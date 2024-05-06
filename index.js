@@ -14,6 +14,7 @@ DadosForm.addEventListener('submit', function (e) {
   const veiculo = document.getElementById('veiculo').value;
   const placa = document.getElementById('placa').value;
   const valor = document.getElementById('valor').value;
+  const img = document.getElementById('img').value;
   const obs = document.getElementById('obs').value;
 
   var dataAtual = new Date();
@@ -42,6 +43,7 @@ DadosForm.addEventListener('submit', function (e) {
     Veiculo: ${veiculo} \n
     Placa: ${placa} \n
     Valor do Contrato: ${valor} \n
+    Imagem: ${img} \n
     Observações: ${obs} \n
     ________________________________________
     ${dataFormatada} / ${horaFormatada}
