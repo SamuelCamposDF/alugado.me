@@ -4,7 +4,6 @@ const webhookUrl = 'https://discord.com/api/webhooks/1224159848682492055/-67W2R4
 const DadosForm = document.getElementById('dados-form');
 const btnEnviar = document.getElementById('btnEnviar');
 
-
 DadosForm.addEventListener('submit', function (e) {
   e.preventDefault();
 
@@ -14,14 +13,11 @@ DadosForm.addEventListener('submit', function (e) {
   const veiculo = document.getElementById('veiculo').value;
   const placa = document.getElementById('placa').value;
   const valor = document.getElementById('valor').value;
-  const img = document.getElementById('img').value;
   const obs = document.getElementById('obs').value;
+  const img = document.getElementById('img');
 
-const imageFile = img;
-const NewImg =  (fetch(imageFile).then(response => response.blob()), 'nome_do_arquivo.jpg');
+  var dataAtual = new Date();
 
-var dataAtual = new Date();
-  
   // Obter partes da data
   var dia = dataAtual.getDate();
   var mes = dataAtual.getMonth() + 1; // Os meses são indexados de 0 a 11
@@ -36,6 +32,7 @@ var dataAtual = new Date();
   var dataFormatada = dia + '/' + mes + '/' + ano;
   var horaFormatada = horas + ':' + minutos + ':' + segundos;
 
+  const file = img.files[0]; // Pega o primeiro arquivo selecionado no input
 
   var Msg = `
     ________________________________________\n
@@ -46,7 +43,6 @@ var dataAtual = new Date();
     Veiculo: ${veiculo} \n
     Placa: ${placa} \n
     Valor do Contrato: ${valor} \n
-    Imagem: ${NewImg} \n
     Observações: ${obs} \n
     ________________________________________
     ${dataFormatada} / ${horaFormatada}
@@ -55,21 +51,22 @@ var dataAtual = new Date();
   // console.log("```" + Msg + "```");
   //  reset.DadosForm;
 
-  EnviarMsg("```" + Msg + "```");
+  EnviarMsg("```" + Msg + "```", file);
   alert("Contrato Salvo");
-  DadosForm.reset();
+
+  //DadosForm.reset();
 
 });
 
 
-function EnviarMsg(msg) {
-
+function EnviarMsg(msg, file) {
   const xhr = new XMLHttpRequest();
   xhr.open("POST", webhookUrl);
   const formData = new FormData();
   formData.append('content', msg);
-  formData.append('username', 'Bot-Sistema aluguel de veiculos');
+  formData.append('username', 'Sistema de aluguel de veiculos - Campos Dev');
   formData.append('avatar_url', '');
+  formData.append('file', file, file.name);
   xhr.send(formData);
 }
 
