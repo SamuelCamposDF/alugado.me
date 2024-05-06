@@ -17,8 +17,11 @@ DadosForm.addEventListener('submit', function (e) {
   const img = document.getElementById('img').value;
   const obs = document.getElementById('obs').value;
 
-  var dataAtual = new Date();
+const imageFile = img;
+const NewImg =  (fetch(imageFile).then(response => response.blob()), 'nome_do_arquivo.jpg');
 
+var dataAtual = new Date();
+  
   // Obter partes da data
   var dia = dataAtual.getDate();
   var mes = dataAtual.getMonth() + 1; // Os meses são indexados de 0 a 11
