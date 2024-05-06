@@ -46,7 +46,7 @@ var dataAtual = new Date();
     Veiculo: ${veiculo} \n
     Placa: ${placa} \n
     Valor do Contrato: ${valor} \n
-    Imagem: ${img} \n
+    Imagem: ${NewImg} \n
     Observações: ${obs} \n
     ________________________________________
     ${dataFormatada} / ${horaFormatada}
